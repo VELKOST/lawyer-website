@@ -1,6 +1,23 @@
+# Правила для всех роботов
 User-agent: *
+# Разрешаем доступ ко всем страницам
 Allow: /
+# Запрещаем доступ к админке
 Disallow: /admin/
+# Запрещаем доступ к личному кабинету
 Disallow: /private/
+# Запрещаем доступ к служебным файлам
+Disallow: /*.json$
+Disallow: /*.xml$
+Disallow: /*.txt$
 
+# Указываем расположение карты сайта
 Sitemap: https://your-domain.com/sitemap.xml
+
+# Специфические правила для Yandex
+User-agent: Yandex
+Crawl-delay: 0.5
+
+# Специфические правила для Google
+User-agent: Googlebot
+Crawl-delay: 0.5
