@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     CategoriesWrapper,
     CategoriesSection,
@@ -44,6 +44,34 @@ const categories = [
 ];
 
 export const Categories: React.FC = () => {
+    const [isVisible, setIsVisible] = useState(false);
+    const [loadedImages, setLoadedImages] = useState<number[]>([]);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                    observer.disconnect();
+                }
+            },
+            {
+                threshold: 0.2
+            }
+        );
+
+        const element = document.getElementById('services');
+        if (element) {
+            observer.observe(element);
+        }
+
+        return () => observer.disconnect();
+    }, []);
+
+    const handleImageLoad = (id: number) => {
+        setLoadedImages(prev => [...prev, id]);
+    };
+
     return (
         <CategoriesWrapper>
             <CategoriesSection id="services">
@@ -51,11 +79,26 @@ export const Categories: React.FC = () => {
                     Сферы моей практики
                 </CategoriesTitle>
                 <CardsGrid>
-                    {categories.map((category) => (
-                        <CategoryCard key={category.id}>
+                    {categories.map((category, index) => (
+                        <CategoryCard
+                            key={category.id}
+                            style={{
+                                opacity: isVisible ? 1 : 0,
+                                transform: isVisible
+                                    ? 'translateY(0)'
+                                    : 'translateY(30px)',
+                                transition: `opacity 0.6s ease-out ${index * 0.15}s, 
+                                           transform 0.6s ease-out ${index * 0.15}s`
+                            }}
+                        >
                             <CardImage
                                 src={category.image}
                                 alt={category.title}
+                                onLoad={() => handleImageLoad(category.id)}
+                                style={{
+                                    opacity: loadedImages.includes(category.id) ? 1 : 0,
+                                    transition: 'opacity 0.3s ease-in-out'
+                                }}
                             />
                             <CardOverlay>
                                 <CardTitle>{category.title}</CardTitle>
