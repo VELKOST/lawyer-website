@@ -12,8 +12,8 @@ export const theme = {
         success: '#00FF00',
     },
     fonts: {
-        main: "'Roboto', sans-serif",
-        secondary: "'Playfair Display', serif",
+        secondary: "'Philosopher', sans-serif",
+        main: "'Source Sans Pro', sans-serif",
     },
     breakpoints: {
         mobile: '320px',
