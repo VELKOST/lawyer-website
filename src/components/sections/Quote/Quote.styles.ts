@@ -31,7 +31,7 @@ export const QuoteSection = styled.section`
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
-        margin-top: 50px;
+        margin-top: 250px;
     }
 `;
 
@@ -119,6 +119,7 @@ export const QuoteRight = styled.div`
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
         aspect-ratio: 3/4; // Делаем изображение выше на мобильных
+        width: 0%;
     }
 `;
 

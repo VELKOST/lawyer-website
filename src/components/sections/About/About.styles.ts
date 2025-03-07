@@ -116,7 +116,7 @@ export const AboutText = styled.div`
 
 export const AboutImageWrapper = styled.div`
     width: clamp(280px, 30%, 400px);
-    height: clamp(280px, 30vw, 400px);
+    height: clamp(280px, 30vw, 500px);
     position: relative;
     flex-shrink: 0;
 
@@ -132,8 +132,9 @@ export const AboutImageWrapper = styled.div`
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
-        width: 100%;
-        height: clamp(200px, 80vw, 280px);
+        width: 80%;
+        height: clamp(200px, 80vw, 380px);
+        
     }
 `;
 
@@ -145,5 +146,9 @@ export const AboutImage = styled.img`
     border-radius: 4px;
     transition: transform 0.3s ease;
 
+    @media (max-width: ${BREAKPOINTS.mobile}) {
+        width: 90%;
+        height: 100%;
+    }
 
 `;

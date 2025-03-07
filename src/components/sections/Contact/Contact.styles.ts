@@ -26,14 +26,14 @@ export const ContactWrapper = styled.div`
 export const ContactSection = styled.section`
     max-width: ${BREAKPOINTS.desktop};
     margin: 0 auto;
-    padding: clamp(60px, 8vw, 120px) clamp(20px, 5vw, 80px);
+    padding: clamp(40px, 8vw, 120px) clamp(15px, 5vw, 80px);
 
     @media (max-width: ${BREAKPOINTS.tablet}) {
-        padding: clamp(40px, 6vw, 60px) clamp(15px, 4vw, 30px);
+        padding: 30px 15px;
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
-        padding: 30px 15px;
+        padding: 20px 10px;
     }
 `;
 
@@ -42,30 +42,37 @@ export const ContactContent = styled.div`
     grid-template-columns: 1fr 1fr;
     gap: clamp(30px, 4vw, 60px);
     align-items: start;
+    width: 100%;
 
     @media (max-width: ${BREAKPOINTS.laptop}) {
         grid-template-columns: 1fr;
-        gap: clamp(30px, 5vw, 40px);
+        gap: 30px;
+        max-width: 600px; // Ограничиваем максимальную ширину на мобильных
+        margin: 0 auto;
     }
 `;
 
 export const ImageContainer = styled.div`
     position: relative;
     width: 100%;
-    height: 100%;
-    min-height: clamp(400px, 50vw, 600px);
+    aspect-ratio: 4/3; // Фиксированное соотношение сторон
+    min-height: 300px;
+    max-height: 600px;
     border-radius: 12px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
-    animation: ${fadeIn} 0.6s ease-out forwards;
 
     @media (max-width: ${BREAKPOINTS.laptop}) {
-        min-height: clamp(300px, 40vw, 400px);
+        aspect-ratio: 16/9;
+        min-height: 250px;
+        max-height: 400px;
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
-        min-height: 250px;
+        aspect-ratio: 3/2;
+        min-height: 200px;
+        max-height: 300px;
     }
 `;
 
@@ -73,18 +80,18 @@ export const ContactImage = styled.img`
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     transition: transform 0.3s ease;
-
-    &:hover {
-        transform: scale(1.05);
-    }
 `;
 
 export const InfoContainer = styled.div`
     color: white;
     padding: clamp(15px, 2vw, 20px);
-    animation: ${fadeIn} 0.6s ease-out 0.2s forwards;
-    opacity: 0;
+    width: 100%;
+
+    @media (max-width: ${BREAKPOINTS.laptop}) {
+        padding: 15px 0;
+    }
 `;
 
 export const ContactTitle = styled.h3`
@@ -151,15 +158,17 @@ export const ContactItem = styled.a`
 
 export const MapContainer = styled.div`
     width: 100%;
-    height: clamp(250px, 30vw, 300px);
+    aspect-ratio: 16/9; // Фиксированное соотношение сторон для карты
+    min-height: 200px;
+    max-height: 300px;
     border-radius: 8px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 
-    &:hover {
-        border-color: rgba(255, 255, 255, 0.2);
-        box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    @media (max-width: ${BREAKPOINTS.mobile}) {
+        aspect-ratio: 4/3;
+        min-height: 200px;
     }
 `;

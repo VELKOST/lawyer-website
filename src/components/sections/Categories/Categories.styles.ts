@@ -107,7 +107,33 @@ export const CardOverlay = styled.div`
     align-items: center;
     justify-content: center;
     padding: clamp(15px, 3vw, 25px);
-    transition: background 0.3s ease;
+    transition: all 0.5s ease; // Увеличили время перехода и добавили all
+`;
+
+
+export const CardImage = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: all 0.5s ease; // Увеличили время перехода и добавили all
+    transform: scale(1);
+    filter: brightness(1);
+`;
+
+export const CardTitle = styled.h4`
+    font-family: ${({ theme }) => theme.fonts.main};
+    font-size: clamp(16px, 2vw, 24px);
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s ease; // Увеличили время перехода
+    padding: 0 10px;
+    transform: translateY(0);
+
+    @media (max-width: ${BREAKPOINTS.mobile}) {
+        font-size: 18px;
+    }
 `;
 
 export const CategoryCard = styled.div`
@@ -125,8 +151,9 @@ export const CategoryCard = styled.div`
         box-shadow: 0 8px 24px rgba(255, 255, 255, 0.1);
         border-color: rgba(255, 255, 255, 0.2);
 
-        img {
-            transform: scale(1.1);
+        ${CardImage} {
+            
+            filter: brightness(1.1); // Немного осветляем изображение
         }
 
         ${CardOverlay} {
@@ -135,31 +162,13 @@ export const CategoryCard = styled.div`
                     rgba(0, 0, 0, 0.7)
             );
         }
+
+        ${CardTitle} {
+            transform: translateY(-2px); // Добавляем легкую анимацию для заголовка
+        }
     }
 
     @media (max-width: ${BREAKPOINTS.mobile}) {
         aspect-ratio: 16/9;
-    }
-`;
-
-export const CardImage = styled.img`
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-`;
-
-export const CardTitle = styled.h4`
-    font-family: ${({ theme }) => theme.fonts.main};
-    font-size: clamp(16px, 2vw, 24px);
-    color: white;
-    text-align: center;
-    font-weight: 600;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-    transition: transform 0.3s ease;
-    padding: 0 10px;
-
-    @media (max-width: ${BREAKPOINTS.mobile}) {
-        font-size: 18px;
     }
 `;
